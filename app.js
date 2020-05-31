@@ -1,7 +1,7 @@
 'use strict';
 
 
-fp = require('filepay');
+var fp = require('filepay');
 
 var pk = ''
 
@@ -12,10 +12,11 @@ function send(){
         data: [Math.round(Date.now() / 1000).toString()],
         pay: {
             key: pk,
-            feeb:0.7
+            feeb:0.5
         }
     });
 }
+send()
 
 
 
