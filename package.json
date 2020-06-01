@@ -2,18 +2,19 @@
   "name": "metastamp-server",
   "version": "0.0.1",
   "description": "Backend server for broadcasting timestampe oracle transactions",
-  "main": "app.js",
+  "main": "metastamp-server.js",
   "engines": {
     "node": ">=8.0.0"
   },
   "scripts": {
-    "start": "node app.js",
+    "start": "node metastamp-server.js",
     "test": "test"
   },
   "author": "Jonathan Aird",
   "license": "ISC",
   "dependencies": {
     "bsv": "^1.5.3",
-    "filepay": "1.0.30"
+    "filepay": "1.0.30",
+    "toychain": "0.0.19"
   }
 }
