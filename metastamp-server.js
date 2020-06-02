@@ -4,7 +4,7 @@
 var fp = require('filepay');
 var Toychain = require('toychain')
 
-var pk = ''
+var pk ='' 
 var xpriv =''
 
 chain = new Toychain({xpriv})
@@ -14,10 +14,26 @@ if(chain.count('utxo')==0){
 } else{
     reset=false;
 }
+function broadcastMessage(){
+	console.log('broadcast at: ',new Date())
+	if(global.gc){
+		global.gc()
+	}else{
+		console.log('enable manual garbage collection for better memory management')
+	}
+}
 
+function broadcast(){
+	try{
+		b()
+	}catch(err){
+		console.log('caught error in broadcast, resetting server: ',err)
+		reset = true
+		b()
+	}
 
-
-function broadcast() {
+}
+function b() {
     if (reset) {
         chain.reset()
         fp.build({
@@ -38,9 +54,10 @@ function broadcast() {
                     console.log('error sending tx with filepay: ',err)
                     process.exit()
                 }
+		broadcastMessage()
             })
             chain.clone({tx})
-
+		console.log(chain.count('utxo'))
         });
     } else{
         var result = chain.add({
@@ -71,9 +88,11 @@ function broadcast() {
                 broadcast()
             } else{
                 chain.push()
+		broadcastMessage()
             }
         }else{
             chain.push()
+	    broadcastMessage()
         }
         
 

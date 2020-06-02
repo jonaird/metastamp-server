@@ -7,14 +7,14 @@
     "node": ">=8.0.0"
   },
   "scripts": {
-    "start": "node metastamp-server.js",
+    "start": "node --expose_gc metastamp-server.js &>> logs.txt &",
     "test": "test"
   },
   "author": "Jonathan Aird",
   "license": "ISC",
   "dependencies": {
     "bsv": "^1.5.3",
-    "filepay": "1.0.30",
+    "filepay": "^2.0.6",
     "toychain": "0.0.19"
   }
 }
